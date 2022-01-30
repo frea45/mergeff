@@ -24,13 +24,13 @@ async def UploadVideo(bot: Client, cb: CallbackQuery, merged_vid_path: str, widt
                 caption=f"**● {merged_vid_path.rsplit('/', 1)[-1]}**" + f"\n\n{Config.CAPTION}",
                 progress=progress_for_pyrogram,
                 progress_args=(
-                    "**📤 Uploading as Video...**",
+                    "**📤 در حال آپلود ویدیو ...**",
                     cb.message,
                     c_time
                 ),
                 reply_markup=InlineKeyboardMarkup(
                     [[
-                         InlineKeyboardButton("👀 More Amazing Botz 🤖", url="https://t.me/tellybots")]
+                         InlineKeyboardButton("💬 ارسال نظرات و پیشنهادات", url="https://t.me/FarshidBand")]
                     ]
                 )
             )
