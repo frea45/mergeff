@@ -45,17 +45,16 @@ class Config(object):
 ★──────────∆──────────★
 """
 
-    HELP_TEXT = """**Hello {}, It's too easy to use me..**
+    HELP_TEXT = """📚 راهنمای استفاده از ربات
  
-**● Configure the Settings before using me... 
-● Send a photo to set it as your custom thumbnail...
-● Send videos to merge accordingly...**
-  __- Atleast 2 Videos to be sent to merge
-  - The video formats should be mp4, mkv or WebM
-  - The videos should have proper file name__
-  
-**● If you are done with sending medias, Click "🔀 Merge Now" to merge
-● That's it, and rest is mine work...
+**✵ ابتدا تنظیمات مربوطه را به دلخواه تغییر دهید 👈🏼 /settings **
+
+**✵ فایل های خود را به این ربات ارسال کنید. 👀 حداکثر 2 تا 10 فایل **
+
+**⚠️ فایل های ویدیویی که ارسال می کنید باید همه با یک فرمت باشد.**
+مثال : اگر اولین فایلی که ارسال کردید با فرمت mp4 باشد باید بقیه فایل که میکنید با فرمت mp4 باشد.
+
+
 
 🔮 @IR_VideoMergeBot ❤️**
 """
