@@ -477,7 +477,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
         try:
             await bot.send_message(
                 chat_id=cb.message.chat.id,
-                text="**😐 This File Sir!**",
+                text="**آیا مایل هستید این فایل را از لیست حذف کنید؟!**",
                 reply_to_message_id=message_.message_id,
                 reply_markup=InlineKeyboardMarkup(
                     [
@@ -617,7 +617,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
         if (QueueDB.get(cb.from_user.id, None) is None) or (QueueDB.get(cb.from_user.id) == []):
             await cb.answer("Sorry, Your Queue is Empty!", show_alert=True)
             return
-        merged_vid_path = f"{Config.DOWN_PATH}/{str(cb.from_user.id)}/[@Tellybots]_Merged.{FormtDB.get(cb.from_user.id).lower()}"
+        merged_vid_path = f"{Config.DOWN_PATH}/{str(cb.from_user.id)}/[@IR_VideoMergeBot]_Merged.{FormtDB.get(cb.from_user.id).lower()}"
         if cb.data.split("_", 1)[-1] == "Yes":
             await cb.message.edit("**🔚 حالا نام جدید فایل را ارسال نمایید.**")
             try:
@@ -652,7 +652,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             await delete_all(root=f"{Config.DOWN_PATH}/{cb.from_user.id}/")
             QueueDB.update({cb.from_user.id: []})
             FormtDB.update({cb.from_user.id: None})
-            await cb.message.edit("**The Merged Video is Corrupted!**\n**🔚 دوباره تلاش کنید...**")
+            await cb.message.edit("**متاسفانه عملیات چسپاندن ویدیو ناموفق بود .**\n**🔚 دوباره تلاش کنید...**")
             return
         video_thumbnail = None
         db_thumbnail = await db.get_thumbnail(cb.from_user.id)
