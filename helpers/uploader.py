@@ -29,8 +29,10 @@ async def UploadVideo(bot: Client, cb: CallbackQuery, merged_vid_path: str, widt
                     c_time
                 ),
                 reply_markup=InlineKeyboardMarkup(
-                    [[
-                         InlineKeyboardButton("💬 ارسال نظرات و پیشنهادات", url="https://t.me/FarshidBand")]
+                    [
+                         [InlineKeyboardButton("💬 ارسال نظرات و پیشنهادات", url="https://t.me/FarshidBand")],
+                         [InlineKeyboardButton("درباره ی من", callback_data="about"),
+                          InlineKeyboardButton("⁦⚙️⁩ تنظیمات مجدد", callback_data="openSettings")],
                     ]
                 )
             )
