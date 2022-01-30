@@ -56,14 +56,14 @@ START_BUTTONS = InlineKeyboardMarkup(
 
 HELP_BUTTONS = InlineKeyboardMarkup(
             [
-                [ InlineKeyboardButton("× بستن ×", callback_data="close")],
+                [ InlineKeyboardButton("🔙 بازگشت به صفحه اصلی", callback_data="home")],
             ]
         )
 
 ABOUT_BUTTONS = InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton("⁦🛠️⁩ مدیر و سازنده ربات ⁦🛠️⁩", url="https://t.me/SeriesPlus1")],          
-                [InlineKeyboardButton("× بستن ×", callback_data="close")],
+                [InlineKeyboardButton("🔙 بازگشت به صفحه اصلی", callback_data="home")],
             ]
         )
 @NubBot.on_message(filters.private & filters.command("start"))
@@ -73,7 +73,7 @@ async def start_handler(bot: Client, m: Message, cb=False):
     if FSub == 400:
         return
     if not cb:
-        send_msg = await m.reply_text("**👀 Processing......**", quote=True)    
+        send_msg = await m.reply_text("**⌨️ در حال بررسی ...**", quote=True)    
     await send_msg.edit(
       text=f"{Config.START_TEXT}".format(m.from_user.mention), 
       reply_markup=START_BUTTONS, 
@@ -195,7 +195,7 @@ async def photo_handler(bot: Client, m: Message):
     editable = await m.reply_text("**📸 Saving Thumbnail to my Database...**", quote=True)
     await db.set_thumbnail(m.from_user.id, thumbnail=m.photo.file_id)
     await editable.edit(
-        text="**🙋🏻‍♂️ Hey, Your Thumbnail is Saved Successfully!**",
+        text="**عکس سرصفحه ویدیو باموفقیت ذخیره شد.**",
         reply_markup=InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton("⭕ نمایش عکس سرصفحه ویدیو ⭕", callback_data="showThumbnail")],
@@ -548,7 +548,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                 photo=db_thumbnail,
                 reply_markup=InlineKeyboardMarkup(
                     [
-                        [InlineKeyboardButton("🗑️ Delete Thumbnail", callback_data="deleteThumbnail")]
+                        [InlineKeyboardButton("🗑️ حذف عکس سرصفحه ویدیو 🗑️", callback_data="deleteThumbnail")]
                     ]
                 )
             )
@@ -556,7 +556,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             await cb.answer("😐 No Thumbnail Found for you in Database!")
     elif "deleteThumbnail" in cb.data:
         await db.set_thumbnail(cb.from_user.id, thumbnail=None)
-        await cb.message.edit("**✅ حذف عکس سرصفحه با موفقیت انجام شد.**")
+        await cb.message.edit("**✅حذف عکس سرصفحه با موفقیت انجام شد.**")
     elif "triggerUploadMode" in cb.data:
         upload_as_doc = await db.get_upload_as_doc(cb.from_user.id)
         if upload_as_doc is False:
