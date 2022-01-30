@@ -50,7 +50,7 @@ START_BUTTONS = InlineKeyboardMarkup(
             [InlineKeyboardButton("🛠️ مدیر و سازنده ربات ⁦🛠️⁩", url="https://t.me/FarshidBand")], 
             [InlineKeyboardButton("📢 کانال پشتیبانی", url="https://t.me/SeriesPlus1"),
               InlineKeyboardButton("👥 گروه پشتیبانی", url="https://t.me/dlchinhub")], 
-             [InlineKeyboardButton("× بستن ×", callback_data="close")], 
+             [InlineKeyboardButton("× بستن منو ×", callback_data="close")], 
              ]
           )
 
@@ -373,7 +373,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                     text=f"**در حال دانلود فایل...\n{media.file_name}...**")
             except MessageNotModified:
                 QueueDB.get(cb.from_user.id).remove(i.message_id)
-                await cb.message.edit("**Skipped the File!**")
+                await cb.message.edit("**فایل حذف شد!**")
                 await asyncio.sleep(3)
                 continue
             file_dl_path = None
@@ -392,7 +392,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             except Exception as downloadErr:
                 print(f"**😐 Failed to Download the Given File!**\n**Error: {downloadErr}**\n\n**Contact My Support Group - @tellybotz_support**")
                 QueueDB.get(cb.from_user.id).remove(i.message_id)
-                await cb.message.edit("**File Skipped!**")
+                await cb.message.edit("**فایل حذف شد!**")
                 await asyncio.sleep(3)
                 continue
             metadata = extractMetadata(createParser(file_dl_path))
@@ -410,7 +410,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
         if (len(vid_list) < 2) and (len(vid_list) > 0):
             await cb.message.edit("**There's only one video in the Queue!**\n**Maybe you sent same video multiple times.**\n\n**Any Issues, Contact us at @tellybotz_support**")
             return
-        await cb.message.edit("**Trying to Merge Videos...**",
+        await cb.message.edit("**در حال چسپاندن ویدیوها...**",
                               reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⛔ کنسل ", callback_data="cancelProcess")]]))
         with open(input_, 'w') as _list:
             _list.write("\n".join(vid_list))
@@ -625,7 +625,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                 if ask_.text:
                     ascii_ = e = ''.join([i if (i in string.digits or i in string.ascii_letters or i == " ") else "" for i in ask_.text])
                     new_file_name = f"{Config.DOWN_PATH}/{str(cb.from_user.id)}/{ascii_.replace(' ', ' ').rsplit('.', 1)[0]}.{FormtDB.get(cb.from_user.id).lower()}"
-                    await cb.message.edit(f"**Renaming your file to** `{new_file_name.rsplit('/', 1)[-1]}`",
+                    await cb.message.edit(f"**در حال تغییرنام ویدیو به** `{new_file_name.rsplit('/', 1)[-1]}`",
                                           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("» لغو «", callback_data="cancelProcess")]]))
                     os.rename(merged_vid_path, new_file_name)
                     await asyncio.sleep(2)
@@ -652,7 +652,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             await delete_all(root=f"{Config.DOWN_PATH}/{cb.from_user.id}/")
             QueueDB.update({cb.from_user.id: []})
             FormtDB.update({cb.from_user.id: None})
-            await cb.message.edit("**The Merged Video is Corrupted!**\n**Try Again Later.**")
+            await cb.message.edit("**متاسفانه عملیات چسپاندن ویدیوها ناموفق بود!**\n**🔚 دوباره تلاش کنید ...**")
             return
         video_thumbnail = None
         db_thumbnail = await db.get_thumbnail(cb.from_user.id)
