@@ -133,7 +133,7 @@ async def videos_handler(bot: Client, m: Message):
         return
     media = m.video or m.document
     if media.file_name.rsplit(".", 1)[-1].lower() not in ["mp4", "mkv", "webm"]:
-        await m.reply_text("**Sorry dude, I don't support such video formats!**\n**Send Only MP4, MKV or WEBM.**\n\n**Thank You For Using me - @Tellybots ❤️**", quote=True)
+        await m.reply_text("😔 متاسفانه فرمت فایل ارسالی پشتیبانی نمیشود!!\n• لطفا فایل هایی با پسوند **mp4-mkv-webm** ارسال نمایید", quote=True)
         return
     if QueueDB.get(m.from_user.id, None) is None:
         FormtDB.update({m.from_user.id: media.file_name.rsplit(".", 1)[-1].lower()})
@@ -146,7 +146,7 @@ async def videos_handler(bot: Client, m: Message):
         return
     isInGap, sleepTime = await CheckTimeGap(m.from_user.id)
     if isInGap is True:
-        await m.reply_text(f"**🙄 I don't liked your flooding!**\n**Send next videos in {str(sleepTime)}seconds!! 😊**", quote=True)
+        await m.reply_text(f"**🙄 با گذشت {str(sleepTime)} ثانیه دیگر ، فایل جدید را ارسال نمایید**", quote=True)
     else:
         editable = await m.reply_text("**⁦🤏 کمی صبر کنید ...**", quote=True)
         MessageText = "👏 خیلی عالی 😍\n➕ حالا ویدیوی بعدی را ارسال نمایید."
@@ -626,7 +626,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                     ascii_ = e = ''.join([i if (i in string.digits or i in string.ascii_letters or i == " ") else "" for i in ask_.text])
                     new_file_name = f"{Config.DOWN_PATH}/{str(cb.from_user.id)}/{ascii_.replace(' ', ' ').rsplit('.', 1)[0]}.{FormtDB.get(cb.from_user.id).lower()}"
                     await cb.message.edit(f"**Renaming your file to** `{new_file_name.rsplit('/', 1)[-1]}`",
-                                          reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⛔ Cancel Process 🗑️", callback_data="cancelProcess")]]))
+                                          reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("» لغو «", callback_data="cancelProcess")]]))
                     os.rename(merged_vid_path, new_file_name)
                     await asyncio.sleep(2)
                     merged_vid_path = new_file_name
