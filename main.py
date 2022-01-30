@@ -370,7 +370,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             media = i.video or i.document
             try:
                 await cb.message.edit(
-                    text=f"**📥 در حال دانلود فایل ...\n{media.file_name}...**")
+                    text=f"**در حال دانلود فایل...\n{media.file_name}...**")
             except MessageNotModified:
                 QueueDB.get(cb.from_user.id).remove(i.message_id)
                 await cb.message.edit("**Skipped the File!**")
@@ -384,7 +384,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                     file_name=f"{Config.DOWN_PATH}/{cb.from_user.id}/{i.message_id}/",
                     progress=progress_for_pyrogram,
                     progress_args=(
-                        "**Downloading...**",
+                        "**📥 در حال دانلود فایل ...**",
                         cb.message,
                         c_time
                     )
@@ -444,9 +444,8 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             text="**📌 آیا مایل هستید نام ویدیو را تغییر دهید؟**\n**⚡یکی از دکمه های زیر را انتخاب کنید 👇**",
             reply_markup=InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton("⁦✍️⁩ تغییرنام ویدیو ⚡", callback_data="renameFile_Yes"), 
-                     InlineKeyboardButton("📀 دریافت ویدیو - اتوماتیک 📀", callback_data="renameFile_No")],
-                    [InlineKeyboardButton("💬 Join My Support Group 👥", url="https://t.me/tellybotz_support")]
+                    [InlineKeyboardButton("⁦✍️⁩ تغییرنام ویدیو ⚡", callback_data="renameFile_Yes")], 
+                    [InlineKeyboardButton("📀 دریافت ویدیو - اتوماتیک 📀", callback_data="renameFile_No")],
                 ]
             )
         )
@@ -701,7 +700,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             video_thumbnail=video_thumbnail,
             file_size=os.path.getsize(merged_vid_path)
         )
-        caption = f"**__© Uploaded By @IR_VideoMergeBot ❤️__**"
+        caption = f"**__© @IR_VideoMergeBot ❤️__**"
         if (await db.get_generate_ss(cb.from_user.id)) is True:
             await cb.message.edit("**📷 در حال گرفتن اسکرین شات ...**")
             generate_ss_dir = f"{Config.DOWN_PATH}/{str(cb.from_user.id)}"
