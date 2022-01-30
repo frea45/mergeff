@@ -373,7 +373,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                     text=f"**در حال دانلود فایل...\n{media.file_name}...**")
             except MessageNotModified:
                 QueueDB.get(cb.from_user.id).remove(i.message_id)
-                await cb.message.edit("**Skipped the File!**")
+                await cb.message.edit("**فایل حذف شد.**")
                 await asyncio.sleep(3)
                 continue
             file_dl_path = None
@@ -392,7 +392,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             except Exception as downloadErr:
                 print(f"**😐 Failed to Download the Given File!**\n**Error: {downloadErr}**\n\n**Contact My Support Group - @tellybotz_support**")
                 QueueDB.get(cb.from_user.id).remove(i.message_id)
-                await cb.message.edit("**File Skipped!**")
+                await cb.message.edit("**فایل حذف شد.**")
                 await asyncio.sleep(3)
                 continue
             metadata = extractMetadata(createParser(file_dl_path))
