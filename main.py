@@ -481,8 +481,8 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                 reply_to_message_id=message_.message_id,
                 reply_markup=InlineKeyboardMarkup(
                     [
-                        [InlineKeyboardButton("🗑️ Remove File", callback_data=f"removeFile_{str(message_.message_id)}"), 
-                         InlineKeyboardButton("⛔ Close", callback_data=f"close")
+                        [InlineKeyboardButton("🗑️ حذف کردن فایل", callback_data=f"removeFile_{str(message_.message_id)}"), 
+                         InlineKeyboardButton("🔙 بازگشت", callback_data=f"close")
                         ]
                     ] 
                 )
@@ -576,7 +576,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
         if (QueueDB.get(cb.from_user.id, None) is not None) or (QueueDB.get(cb.from_user.id) != []):
             QueueDB.get(cb.from_user.id).remove(int(cb.data.split("_", 1)[-1]))
             await cb.message.edit(
-                text="**File removed from queue!**",
+                text="**فایل باموفقیت از لیست حذف شد!**",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [InlineKeyboardButton("🔙 برگشت", callback_data="close")]
@@ -625,7 +625,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                 if ask_.text:
                     ascii_ = e = ''.join([i if (i in string.digits or i in string.ascii_letters or i == " ") else "" for i in ask_.text])
                     new_file_name = f"{Config.DOWN_PATH}/{str(cb.from_user.id)}/{ascii_.replace(' ', ' ').rsplit('.', 1)[0]}.{FormtDB.get(cb.from_user.id).lower()}"
-                    await cb.message.edit(f"**Renaming your file to** `{new_file_name.rsplit('/', 1)[-1]}`",
+                    await cb.message.edit(f"**در حال تغییرنام ویدیو به** `{new_file_name.rsplit('/', 1)[-1]}`",
                                           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("» لغو «", callback_data="cancelProcess")]]))
                     os.rename(merged_vid_path, new_file_name)
                     await asyncio.sleep(2)
@@ -652,7 +652,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             await delete_all(root=f"{Config.DOWN_PATH}/{cb.from_user.id}/")
             QueueDB.update({cb.from_user.id: []})
             FormtDB.update({cb.from_user.id: None})
-            await cb.message.edit("**The Merged Video is Corrupted!**\n**Try Again Later.**")
+            await cb.message.edit("**The Merged Video is Corrupted!**\n**🔚 دوباره تلاش کنید...**")
             return
         video_thumbnail = None
         db_thumbnail = await db.get_thumbnail(cb.from_user.id)
