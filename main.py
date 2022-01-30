@@ -361,7 +361,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             await cb.message.delete(True)
             return
         if len(list_message_ids) < 2:
-            await cb.answer("You have sent only 1 video, Send another one 🙄!", show_alert=True)
+            await cb.answer("شما فقط 1 ویدیو ارسال کرده اید یک ویدیو دیگر هم ارسال کنید .", show_alert=True)
             await cb.message.delete(True)
             return
         if not os.path.exists(f"{Config.DOWN_PATH}/{cb.from_user.id}/"):
