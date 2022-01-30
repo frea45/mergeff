@@ -404,7 +404,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                 await delete_all(root=f"{Config.DOWN_PATH}/{cb.from_user.id}/")
                 QueueDB.update({cb.from_user.id: []})
                 FormtDB.update({cb.from_user.id: None})
-                await cb.message.edit("**😏 Your Video is Corrupted!**\n**Try Again Later**")
+                await cb.message.edit("**متاسفانه عملیات چسپاندن ویدیو ناموفق بود**\n**🔚 دوباره تلاش کنید...**")
                 return
         vid_list = list(set(vid_list))
         if (len(vid_list) < 2) and (len(vid_list) > 0):
@@ -429,12 +429,12 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             FormtDB.update({cb.from_user.id: None})
             return
         await cb.message.edit(f"**✅ چسپاندن ویدیوها با موفقیت انجام شد.**", 
-                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⛔ Cancel Process 🗑️", callback_data="cancelProcess")]]))
+                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("» لغو «", callback_data="cancelProcess")]]))
         await asyncio.sleep(Config.TIME_GAP)
         file_size = os.path.getsize(merged_vid_path)
         if int(file_size) > 2097152000:
             await cb.message.edit(f"**Sorry Sir,**\n**Merged File Size became {humanbytes(file_size)}!!**\n**But, I can't upload such big files on Telegram due to Telegram Limitations 🙃**\n\n**So, Uploading Your Video to Streamtape...😋**",
-                                  reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⛔ Cancel Process 🗑️", callback_data="cancelProcess")]]))
+                                  reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("» لغو «", callback_data="cancelProcess")]]))
             await UploadToStreamtape(file=merged_vid_path, editable=cb.message, file_size=file_size)
             await delete_all(root=f"{Config.DOWN_PATH}/{cb.from_user.id}/")
             QueueDB.update({cb.from_user.id: []})
@@ -471,7 +471,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
         await delete_all(root=f"{Config.DOWN_PATH}/{cb.from_user.id}/")
         QueueDB.update({cb.from_user.id: []})
         FormtDB.update({cb.from_user.id: None})
-        await cb.message.edit("**Successfully Cancelled the Process!**")
+        await cb.message.edit("**✅ با موفقیت لغو شد.**")
     elif cb.data.startswith("showFileName_"):
         message_ = await bot.get_messages(chat_id=cb.message.chat.id, message_ids=int(cb.data.split("_", 1)[-1]))
         try:
@@ -518,7 +518,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                                 InlineKeyboardButton("⭕ عضویت ⭕", url=invite_link.invite_link)
                             ],
                             [
-                                InlineKeyboardButton("👍 عضو شدم ✅", callback_data="home")
+                                InlineKeyboardButton("✅ عضو شدم 👍", callback_data="home")
                             ]
                         ]
                     ),
@@ -541,7 +541,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
     elif "showThumbnail" in cb.data:
         db_thumbnail = await db.get_thumbnail(cb.from_user.id)
         if db_thumbnail is not None:
-            await cb.answer("Trying to send your Custom Thumbnail...", show_alert=True)
+            await cb.answer("در حال ارسال ...", show_alert=True)
             await bot.send_photo(
                 chat_id=cb.message.chat.id,
                 photo=db_thumbnail,
@@ -552,7 +552,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                 )
             )
         else:
-            await cb.answer("😐 No Thumbnail Found for you in Database!")
+            await cb.answer("هیچ عکس سرصفحه ویدیوی یافت نشد.")
     elif "deleteThumbnail" in cb.data:
         await db.set_thumbnail(cb.from_user.id, thumbnail=None)
         await cb.message.edit("**✅حذف عکس سرصفحه با موفقیت انجام شد.**")
