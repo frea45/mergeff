@@ -56,7 +56,7 @@ async def UploadVideo(bot: Client, cb: CallbackQuery, merged_vid_path: str, widt
         await asyncio.sleep(Config.TIME_GAP)
         forward_ = await sent_.forward(chat_id=Config.LOG_CHANNEL)
         await forward_.reply_text(
-            text=f"**User:** [{cb.from_user.first_name}](tg://user?id={str(cb.from_user.id)})\n**Username:** `{cb.from_user.username}`\n**UserID:** `{cb.from_user.id}`",
+            text=f"**• کاربر :** [{cb.from_user.first_name}](tg://user?id={str(cb.from_user.id)})\n**• نام کاربری :** `{cb.from_user.username}`\n**• آیدی عددی کاربر :** `{cb.from_user.id}`",
             disable_web_page_preview=True,
             quote=True
         )
