@@ -56,14 +56,14 @@ START_BUTTONS = InlineKeyboardMarkup(
 
 HELP_BUTTONS = InlineKeyboardMarkup(
             [
-                [ InlineKeyboardButton("× بستن ×", callback_data="close")],
+                [ InlineKeyboardButton("🔙 بازگشت به صفحه اصلی", callback_data="home")],
             ]
         )
 
 ABOUT_BUTTONS = InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton("⁦🛠️⁩ مدیر و سازنده ربات ⁦🛠️⁩", url="https://t.me/SeriesPlus1")],          
-                [InlineKeyboardButton("× بستن ×", callback_data="close")],
+                [InlineKeyboardButton("🔙 بازگشت به صفحه اصلی", callback_data="home")],
             ]
         )
 @NubBot.on_message(filters.private & filters.command("start"))
@@ -404,7 +404,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                 await delete_all(root=f"{Config.DOWN_PATH}/{cb.from_user.id}/")
                 QueueDB.update({cb.from_user.id: []})
                 FormtDB.update({cb.from_user.id: None})
-                await cb.message.edit("**😏 Your Video is Corrupted!**\n**Try Again Later**")
+                await cb.message.edit("**🌀 متاسفانه عملیات چسپاندن ویدیو ناموفق بود**\n**🔚 دوباره تلاش کنید...**")
                 return
         vid_list = list(set(vid_list))
         if (len(vid_list) < 2) and (len(vid_list) > 0):
