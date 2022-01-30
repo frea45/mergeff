@@ -476,12 +476,12 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
         try:
             await bot.send_message(
                 chat_id=cb.message.chat.id,
-                text="**😐 This File Sir!**",
+                text="**آیا مایل هستید این فایل از لیست حذف شود؟**",
                 reply_to_message_id=message_.message_id,
                 reply_markup=InlineKeyboardMarkup(
                     [
-                        [InlineKeyboardButton("🗑️ Remove File", callback_data=f"removeFile_{str(message_.message_id)}"), 
-                         InlineKeyboardButton("⛔ Close", callback_data=f"close")
+                        [InlineKeyboardButton("🗑️ حذف فایل", callback_data=f"removeFile_{str(message_.message_id)}"), 
+                         InlineKeyboardButton("🔙 بازگشت", callback_data=f"close")
                         ]
                     ] 
                 )
@@ -575,7 +575,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
         if (QueueDB.get(cb.from_user.id, None) is not None) or (QueueDB.get(cb.from_user.id) != []):
             QueueDB.get(cb.from_user.id).remove(int(cb.data.split("_", 1)[-1]))
             await cb.message.edit(
-                text="**File removed from queue!**",
+                text="**فایل موردنظر باموفقیت از لیست حذف شد.**",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [InlineKeyboardButton("🔙 برگشت", callback_data="close")]
