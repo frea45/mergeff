@@ -512,14 +512,14 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                     return
             except UserNotParticipant:
                 await cb.message.edit(
-                    text="**You Still Didn't Join ☹️, Please Join My Updates Channel to use this Bot!**\n\n__Due to Overload, Only Channel Subscribers can use the Bot!__",
+                    text="**⚠️ شما در کانال عضو نشدید !!!**\n\n__🔘 برای کارکردن ربات  باید در کانال پشتیبانی عضو شوید ، سپس /start را کلیک کنید.__",
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
                                 InlineKeyboardButton("⭕ عضویت ⭕", url=invite_link.invite_link)
                             ],
                             [
-                                InlineKeyboardButton("🔄 عضو شدم 🔄", callback_data="refreshFsub")
+                                InlineKeyboardButton("👍 عضو شدم ✅", callback_data="home")
                             ]
                         ]
                     ),
