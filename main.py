@@ -192,7 +192,7 @@ async def photo_handler(bot: Client, m: Message):
     Fsub = await ForceSub(bot, m)
     if Fsub == 400:
         return
-    editable = await m.reply_text("**📸 Saving Thumbnail to my Database...**", quote=True)
+    editable = await m.reply_text("**در حال ذخیره کردن عکس سرصفحه ...**", quote=True)
     await db.set_thumbnail(m.from_user.id, thumbnail=m.photo.file_id)
     await editable.edit(
         text="**عکس سرصفحه ویدیو باموفقیت ذخیره شد.**",
