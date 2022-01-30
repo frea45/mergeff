@@ -410,8 +410,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
         if (len(vid_list) < 2) and (len(vid_list) > 0):
             await cb.message.edit("**There's only one video in the Queue!**\n**Maybe you sent same video multiple times.**\n\n**Any Issues, Contact us at @tellybotz_support**")
             return
-        await cb.message.edit("**در حال چسپاندن ویدیوها...**",
-                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⛔ کنسل ", callback_data="cancelProcess")]]))
+        await cb.message.edit("**در حال چسپاندن ویدیوها...**",                    
         with open(input_, 'w') as _list:
             _list.write("\n".join(vid_list))
         merged_vid_path = await MergeVideo(
@@ -625,8 +624,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                 if ask_.text:
                     ascii_ = e = ''.join([i if (i in string.digits or i in string.ascii_letters or i == " ") else "" for i in ask_.text])
                     new_file_name = f"{Config.DOWN_PATH}/{str(cb.from_user.id)}/{ascii_.replace(' ', ' ').rsplit('.', 1)[0]}.{FormtDB.get(cb.from_user.id).lower()}"
-                    await cb.message.edit(f"**در حال تغییرنام ویدیو به** `{new_file_name.rsplit('/', 1)[-1]}`",
-                                          reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("» لغو «", callback_data="cancelProcess")]]))
+                    await cb.message.edit(f"**در حال تغییرنام ویدیو به** `{new_file_name.rsplit('/', 1)[-1]}`",                                  
                     os.rename(merged_vid_path, new_file_name)
                     await asyncio.sleep(2)
                     merged_vid_path = new_file_name
@@ -636,7 +634,6 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             except:
                 pass
         await cb.message.edit("**📬 در حال استخراج داده های ویدیویی ...**", 
-                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⛔ کنسل", callback_data="cancelProcess")]]))
         duration = 1
         width = 100
         height = 100
