@@ -73,7 +73,7 @@ async def start_handler(bot: Client, m: Message, cb=False):
     if FSub == 400:
         return
     if not cb:
-        send_msg = await m.reply_text("**👀 Processing......**", quote=True)    
+        send_msg = await m.reply_text("**⁦⌨️⁩ در حال بررسی ...**", quote=True)    
     await send_msg.edit(
       text=f"{Config.START_TEXT}".format(m.from_user.mention), 
       reply_markup=START_BUTTONS, 
@@ -384,7 +384,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                     file_name=f"{Config.DOWN_PATH}/{cb.from_user.id}/{i.message_id}/",
                     progress=progress_for_pyrogram,
                     progress_args=(
-                        "**Downloading...**",
+                        "**📥 در حال دانلود فایل ...**",
                         cb.message,
                         c_time
                     )
@@ -519,7 +519,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                                 InlineKeyboardButton("⭕ عضویت ⭕", url=invite_link.invite_link)
                             ],
                             [
-                                InlineKeyboardButton("🔄 عضو شدم 🔄", callback_data="refreshFsub")
+                                InlineKeyboardButton("👍 عضو شدم ✅", callback_data="refreshFsub")
                             ]
                         ]
                     ),
@@ -542,18 +542,18 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
     elif "showThumbnail" in cb.data:
         db_thumbnail = await db.get_thumbnail(cb.from_user.id)
         if db_thumbnail is not None:
-            await cb.answer("Trying to send your Custom Thumbnail...", show_alert=True)
+            await cb.answer("در حال ارسال عکس سرصفحه ویدیو...", show_alert=True)
             await bot.send_photo(
                 chat_id=cb.message.chat.id,
                 photo=db_thumbnail,
                 reply_markup=InlineKeyboardMarkup(
                     [
-                        [InlineKeyboardButton("🗑️ Delete Thumbnail", callback_data="deleteThumbnail")]
+                        [InlineKeyboardButton("🗑️ حذف عکس سرصفحه ویدیو ⁦🗑️⁩", callback_data="deleteThumbnail")]
                     ]
                 )
             )
         else:
-            await cb.answer("😐 No Thumbnail Found for you in Database!")
+            await cb.answer("😐 هیچ عکس سرصفحه ویدیوی ندارید !")
     elif "deleteThumbnail" in cb.data:
         await db.set_thumbnail(cb.from_user.id, thumbnail=None)
         await cb.message.edit("**✅ حذف عکس سرصفحه با موفقیت انجام شد.**")
@@ -618,7 +618,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
         if (QueueDB.get(cb.from_user.id, None) is None) or (QueueDB.get(cb.from_user.id) == []):
             await cb.answer("Sorry, Your Queue is Empty!", show_alert=True)
             return
-        merged_vid_path = f"{Config.DOWN_PATH}/{str(cb.from_user.id)}/[@Tellybots]_Merged.{FormtDB.get(cb.from_user.id).lower()}"
+        merged_vid_path = f"{Config.DOWN_PATH}/{str(cb.from_user.id)}/[@FarshidBand]_Merged.{FormtDB.get(cb.from_user.id).lower()}"
         if cb.data.split("_", 1)[-1] == "Yes":
             await cb.message.edit("**🔚 حالا نام جدید فایل را ارسال نمایید.**")
             try:
