@@ -16,7 +16,7 @@ async def OpenSettings(m: Message, user_id: int):
                     [InlineKeyboardButton(f"🎞️ Generate Sample Video {'✅' if (await db.get_generate_sample_video(id=user_id)) is True else '❌'}", callback_data="triggerGenSample")],
                     [InlineKeyboardButton(f"📸 گرفتن اسکرین شات ها : {'| ✅ فعال |' if (await db.get_generate_ss(id=user_id)) is True else '| ❌ غیرفعال |'}", callback_data="triggerGenSS")],
                     [InlineKeyboardButton("⭕ نمایش عکس سرصفحه ویدیو ⭕", callback_data="showThumbnail")],
-                    [InlineKeyboardButton("× بستن ×", callback_data="close")]
+                    [InlineKeyboardButton("🔙 بازگشت به صفحه اصلی", callback_data="home")]
                 ]
             )
         )
