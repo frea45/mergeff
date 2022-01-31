@@ -411,7 +411,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             await cb.message.edit("**There's only one video in the Queue!**\n**Maybe you sent same video multiple times.**\n\n**Any Issues, Contact us at @tellybotz_support**")
             return
         await cb.message.edit("**Trying to Merge Videos...**",
-                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⛔ کنسل ", callback_data="cancelProcess")]]))
+                              
         with open(input_, 'w') as _list:
             _list.write("\n".join(vid_list))
         merged_vid_path = await MergeVideo(
@@ -429,7 +429,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             FormtDB.update({cb.from_user.id: None})
             return
         await cb.message.edit(f"**✅ چسپاندن ویدیوها با موفقیت انجام شد.**", 
-                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("» لغو «", callback_data="cancelProcess")]]))
+                              
         await asyncio.sleep(Config.TIME_GAP)
         file_size = os.path.getsize(merged_vid_path)
         if int(file_size) > 2097152000:
@@ -617,7 +617,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
         if (QueueDB.get(cb.from_user.id, None) is None) or (QueueDB.get(cb.from_user.id) == []):
             await cb.answer("Sorry, Your Queue is Empty!", show_alert=True)
             return
-        merged_vid_path = f"{Config.DOWN_PATH}/{str(cb.from_user.id)}/[@Tellybots]_Merged.{FormtDB.get(cb.from_user.id).lower()}"
+        merged_vid_path = f"{Config.DOWN_PATH}/{str(cb.from_user.id)}/[@FarshidBand]_Merged.{FormtDB.get(cb.from_user.id).lower()}"
         if cb.data.split("_", 1)[-1] == "Yes":
             await cb.message.edit("**🔚 حالا نام جدید فایل را ارسال نمایید.**")
             try:
@@ -636,7 +636,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             except:
                 pass
         await cb.message.edit("**📬 در حال استخراج داده های ویدیویی ...**", 
-                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⛔ کنسل", callback_data="cancelProcess")]]))
+                 
         duration = 1
         width = 100
         height = 100
