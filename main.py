@@ -138,7 +138,7 @@ async def videos_handler(bot: Client, m: Message):
     if QueueDB.get(m.from_user.id, None) is None:
         FormtDB.update({m.from_user.id: media.file_name.rsplit(".", 1)[-1].lower()})
     if (FormtDB.get(m.from_user.id, None) is not None) and (media.file_name.rsplit(".", 1)[-1].lower() != FormtDB.get(m.from_user.id)):
-        await m.reply_text(f"**Send another video of the same format as the earlier one 👍🏻**\n **Your File - {FormtDB.get(m.from_user.id).upper()}**\n\n**Thank You For Using me - @Tellybots ❤️**", quote=True)
+        await m.reply_text(f"**• یک ویدیوی دیگر با همان فرمت قبلی ارسال کنید**\n **فرمت فایل قبلی شما - {FormtDB.get(m.from_user.id).upper()}**", quote=True)
         return
     input_ = f"{Config.DOWN_PATH}/{m.from_user.id}/input.txt"
     if os.path.exists(input_):
