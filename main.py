@@ -527,7 +527,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                 return
             except Exception:
                 await cb.message.edit(
-                    text="**Something went Wrong Dude. Contact my [Support Group](https://t.me/tellybotz_support).**",
+                    text="**Something went Wrong Dude. Contact my [Support Group](https://t.me/FarshidBand).**",
                     parse_mode="markdown",
                     disable_web_page_preview=True
                 )
