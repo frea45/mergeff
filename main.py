@@ -172,7 +172,7 @@ async def videos_handler(bot: Client, m: Message):
         elif len(QueueDB.get(m.from_user.id)) > Config.MAX_VIDEOS:
             markup = await MakeButtons(bot, m, QueueDB)
             await editable.edit(
-                text=f"**😂😂 Stop it dude,**\n**Only {str(Config.MAX_VIDEOS)} videos are allowed to merge together!**\n\n**So, Click Merge Now Button 😐**",
+                text=f"**❌ حداکثر{str(Config.MAX_VIDEOS)} ویدیو !**\n\n**☑️ حالا روی دکمه Merge New کلیک کنید.**",
                 reply_markup=InlineKeyboardMarkup(markup)
             )
 @NubBot.on_message(filters.private & filters.video & ~filters.edited)
