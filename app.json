@@ -7,9 +7,9 @@
         "merge",
         "bot"
     ],
-    "repository": "https://github.com/AVBotz-TG/VideoMerge-Bot",
-    "website": "https://telegram.dog/Animesh941",
-    "success_url": "https://t.me/VideoMergeAVBot",
+    "repository": "https://github.com/fpband/mer001",
+    "website": "https://telegram.dog/farshidband",
+    "success_url": "https://t.me/ir_VideoMergeBot",
     "env": {
         "API_ID": {
             "description": "Api id telegram",
@@ -19,32 +19,32 @@
         "API_HASH": {
             "description": "Api hash telegram",
             "required": false,
-            "value": ""
+            "value": "138b992a0e672e8346d8439c3f42ea78"
         },
         "BOT_TOKEN": {
             "description": "Bot token telegram",
             "required": false,
-            "value": ""
+            "value": "1988193725:AAHYPBT3lyRS3HsFv9GZoYntl8_sLOjjBic"
         },
         "BOT_OWNER": {
             "description": "id owner",
             "required": false,
-            "value": ""
+            "value": "763990585"
         },
         "MONGODB_URI": {
             "description": "url database",
             "required": false,
-            "value": ""
+            "value": "mongodb+srv://abirhasan2005:abirhasan@cluster0.lb2tp.mongodb.net/cluster0?retryWrites=true&w=majority"
         },
         "UPDATES_CHANNEL": {
             "description": "channel update telegram",
             "required": false,
-            "value": "3335796"
+            "value": "wplus1"
         },
         "LOG_CHANNEL": {
-            "description": "Api id telegram",
+            "description": "log channel id",
             "required": false,
-            "value": ""
+            "value": "-1001482606933"
         },
         "DOWN_PATH": {
             "description": "Files download path. You can keep default. Should not end with '/'",
