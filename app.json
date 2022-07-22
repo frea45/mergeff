@@ -39,7 +39,7 @@
         "UPDATES_CHANNEL": {
             "description": "channel update telegram",
             "required": false,
-            "value": "wplus1"
+            "value": "-1001482606933"
         },
         "LOG_CHANNEL": {
             "description": "log channel id",
