@@ -12,26 +12,39 @@
     "success_url": "https://t.me/VideoMergeAVBot",
     "env": {
         "API_ID": {
-            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
+            "description": "Api id telegram",
+            "required": false,
+            "value": "3335796"
         },
         "API_HASH": {
-            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
+            "description": "Api hash telegram",
+            "required": false,
+            "value": ""
         },
         "BOT_TOKEN": {
-            "description": "Get this from @BotFather XD"
+            "description": "Bot token telegram",
+            "required": false,
+            "value": ""
         },
         "BOT_OWNER": {
-            "description": "Bot Owner UserID"
+            "description": "id owner",
+            "required": false,
+            "value": ""
         },
         "MONGODB_URI": {
-            "description": "MongoDB Database URI for Saving UserID for Broadcast. Tutorial: https://www.youtube.com/watch?v=aXlF80Cn7iU"
+            "description": "url database",
+            "required": false,
+            "value": ""
         },
         "UPDATES_CHANNEL": {
-            "description": "ID of a Channel which you want to do Force Sub to use the bot. Example: -100123456789",
-            "required": false
+            "description": "channel update telegram",
+            "required": false,
+            "value": "3335796"
         },
         "LOG_CHANNEL": {
-            "description": "Logs Channel ID for some Tracking XD. Example: -100123456789"
+            "description": "Api id telegram",
+            "required": false,
+            "value": ""
         },
         "DOWN_PATH": {
             "description": "Files download path. You can keep default. Should not end with '/'",
